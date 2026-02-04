@@ -1,21 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="he">
+<head>
     <meta charset="UTF-8">
-    <title>For Orya</title>
-    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Orya 💖</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.1);
+        }
+        h1 { color: #ff4d6d; margin-bottom: 25px; }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes { background: #ff4d6d; color: white; margin-right: 10px; }
+        .no { background: #ddd; position: absolute; transition: 0.2s; }
+    </style>
+</head>
+<body>
 
-  </head>
-    
-  <body>
-  <div class="card">
-  <h1>Orya, will you be my Valentine? 💘</h1>
-  <button class="yes" onclick="yesClick()">Yes ❤️</button>
-  <button class="no" id="noBtn">No 😢</button>
+<div id="main-content">
+    <div class="card">
+        <h1>Orya, will you be my Valentine? 💖</h1>
+        <button class="yes" onclick="yesClick()">Yes ❤️</button>
+        <button class="no" id="noBtn">No 😢</button>
+    </div>
 </div>
-    <script  src="./script.js"></script>
 
-  </body>
-  
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    function randomMove() {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", randomMove);
+    noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); randomMove(); });
+
+    function yesClick() {
+        document.body.innerHTML = `
+            <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:white; color:#ff4d6d; text-align:center; padding:20px;">
+                <h1 style="font-size:30px;">waiting for you!!💖</h1>
+                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGIyenN0bG52MmxzcHpiOGx4dnA0ODdobnpwcjU4MmYwNXd0NzJlNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iUYkb29OtCeOgsnhnI/giphy.gif" style="width:250px; margin-top:20px; border-radius:20px;">
+            </div>
+        `;
+    }
+</script>
+</body>
 </html>
